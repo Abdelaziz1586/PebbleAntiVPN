@@ -1,0 +1,78 @@
+# Thanks for using and depending on PebbleAntiVPN. #
+# We will try our best to keep your server safe as well as giving you the best experience. #
+
+# Firewall System #
+api-config-file: IP-API.yml
+
+# Messages and Alerts #
+IP-blockage-alert:
+  date-time-formatter-pattern: "yyyy/MM/dd HH:mm:ss"
+  console:
+    enabled: true
+    message: "&cIP &e%ip% &chas been blocked for the following reason &e%alert-query%"
+  players:
+    enabled: true
+    permission: pav.alerts
+    message: "&7[&6PebbleAntiVPN&6] &cBlocked IP &e%ip% &cfor the following reason &e%alert-query%"
+  discord-webhook:
+    enabled: false
+    webhook-url: "Webhook URL here"
+    text-message:
+      enabled: true
+      content: "**New Alert!**"
+    embed:
+      enabled: true
+      title:
+        enabled: true
+        text: "PebbleAntiVPN IP Blockage"
+      description:
+        enabled: true
+        text: "A player has connected using a suspicious IP"
+      color:
+        random: false
+        rgb-colors:
+          R: 242
+          G: 146
+          B: 13
+      fields:
+        enabled: true
+        embed-fields:
+          1:
+            name: "Player"
+            value: "%player%"
+            inline: true
+          2:
+            name: "IP"
+            value: "%ip%"
+            inline: true
+          3:
+            name: "Reason"
+            value: "%alert-query%"
+            inline: true
+      footer:
+        enabled: true
+        text: "Detected at: %time%"
+        icon:
+          enabled: true
+          url: "https://i.imgur.com/obCxZdl.png"
+      thumbnail:
+        enabled: true
+        thumbnail-url: "https://mc-heads.net/avatar/%player%/"
+
+# Command #
+command:
+  reload:
+    permission: pav.command.reload
+    message: "&7[&6PebbleAntiVPN&6] &aReloaded all config, data, and APIs!\n&7Info: Check the console to make sure there aren't any errors."
+  whitelist:
+    permission: pav.command.whitelist
+    messages:
+      add:
+        success: "&7[&6PebbleAntiVPN&6] &aSuccessfully add &e%query% &ato the whitelist"
+        fail: "&7[&6PebbleAntiVPN&6] &c%query% is already whitelisted!"
+      remove:
+        success: "&7[&6PebbleAntiVPN&6] &aSuccessfully removed &e%query% &afrom the whitelist"
+        fail: "&7[&6PebbleAntiVPN&6] &c%query% is not whitelisted!"
+      no-given-query: "&7[&6PebbleAntiVPN&6] &c/pav whitelist (add/remove) (player name/IP)"
+      no-such-ip-or-player: "&7[&6PebbleAntiVPN&6] &cThere is no such IP or player that has connected to this server."
+  incomplete-arguments: "&7[&6PebbleAntiVPN&6] &c/pav reload/whitelist"

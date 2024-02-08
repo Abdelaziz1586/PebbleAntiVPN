@@ -1,0 +1,31 @@
+# Variables that can be used
+# %ip% -> returns IP
+# %time% -> time of join
+# %player% -> player name
+
+# Types of actions that can be used
+# CANCEL -> cancels a connection
+# ALERT -> triggers plugin alert system
+
+# Details about API
+name: ProxyCheck
+url: "https://proxycheck.io/v2/%ip%?vpn=1&asn=1"
+key:
+  enabled: false
+  keyValue: ""
+  keyHeader: ""
+
+limitation:
+  enabled: true
+  maxNumberOfChecksPerTime: 100,86400 # 45 -> number of checks, 60 -> time in seconds
+
+# JSON variables
+vars:
+  type:
+    alert-query: "Proxy IP"
+    bypass-permission: pav.bypass.proxy
+    cancel-message: "&cProxies aren't allowed in this server"
+    conditions:
+      VPN: # <- Conditions style
+        - CANCEL # <- Actions style
+        - ALERT

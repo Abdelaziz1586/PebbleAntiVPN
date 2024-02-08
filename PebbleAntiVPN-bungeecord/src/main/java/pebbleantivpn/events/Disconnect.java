@@ -16,8 +16,10 @@ public class Disconnect implements Listener {
 
     @EventHandler
     public void onDisconnect(PlayerDisconnectEvent e) {
-        String IP = e.getPlayer().getSocketAddress().toString().split(":")[0].replace("/", "");
-        this.handler.removeConnection(IP);
+        if ((boolean) this.handler.getConfig("users-per-ip.enabled", false)) {
+            String IP = e.getPlayer().getSocketAddress().toString().split(":")[0].replace("/", "");
+            this.handler.removeConnection(IP);
+        }
     }
 
 }

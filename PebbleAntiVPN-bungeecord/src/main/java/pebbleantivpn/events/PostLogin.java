@@ -27,23 +27,27 @@ public class PostLogin implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent e) throws IOException {
-        if (!this.main.isPluginEnabled() || e.getPlayer().hasPermission(this.handler.getConfig("bypass-permission", false).toString()))
+        if (!main.isPluginEnabled() || e.getPlayer().hasPermission(handler.getConfig("bypass-permission", false).toString()))
             return;
 
         String IP = e.getPlayer().getSocketAddress().toString().split(":")[0].replace("/", "");
         String dataIP = IP.replace(".", "_");
+
+        boolean isWhitelisted = this.handler.getDetials(dataIP).get("whitelist");
+
         String name = e.getPlayer().getName();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String country;
         String countryCode;
 
-        if (this.proxyChecker.isProxy(IP, name)) {
+
+        if (!isWhitelisted && this.proxyChecker.isProxy(IP, name)){
             country = this.handler.getData("details." + dataIP + ".country.name").toString();
             countryCode = this.handler.getData("details." + dataIP + ".country.name").toString();
 
             e.getPlayer().disconnect(new TextComponent(this.handler.getConfig("block-message", true).toString().replace("%ip%", IP).replace("%player%", name).replace("%time%", dtf.format(now)).replace("%country%", country).replace("%countryCode%", countryCode)));
-        } else if ((boolean) this.handler.getConfig("blocked-countries.enabled", false)) {
+        } else if (!isWhitelisted && (boolean) this.handler.getConfig("blocked-countries.enabled", false)) {
             country = this.handler.getData("details." + dataIP + ".country.name").toString();
             countryCode = this.handler.getData("details." + dataIP + ".country.name").toString();
             String kickMessage = this.handler.getConfig("blocked-countries.kick-message", true).toString().replace("%ip%", IP).replace("%player%", name).replace("%time%", dtf.format(now)).replace("%country%", country).replace("%countryCode%", countryCode);
@@ -67,5 +71,4 @@ public class PostLogin implements Listener {
             }
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package pebbleantivpn.BungeeAlerts;
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import pebbleantivpn.data.BungeeHandler;
 import pebbleantivpn.pebbleantivpn.PebbleAntiVPNBungeeCord;
@@ -12,6 +13,7 @@ public class MainAlert {
     public MainAlert(PebbleAntiVPNBungeeCord plugin) {
         this.main = plugin;
         this.handler = plugin.getHandler();
+
     }
 
     public void execute(String IP, String name, String country, String countryCode, String time) {

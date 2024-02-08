@@ -1,0 +1,186 @@
+# Variables that can be used
+# %ip% -> returns IP
+# %time% -> time of join
+# %player% -> player name
+
+# Types of actions that can be used
+# CANCEL -> cancels a connection
+# ALERT -> triggers plugin alert system
+
+# Details about API
+name: IP-API
+url: "http://ip-api.com/json/%ip%?fields=continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,mobile,proxy,hosting"
+request-method: "GET"
+key:
+  enabled: false
+  keyValue: "value"
+  keyHeader: "header"
+
+# Limitation (optional)
+limitation:
+  enabled: true
+  maxNumberOfChecksPerTime: 45,60 # 45 -> number of checks, 60 -> every (time) in seconds
+  limitation-message: "&cSorry, but there are too many incoming connections at the moment\n&cPlease try again later"
+
+# Most important part, JSON Variables #
+vars:
+  proxy:
+    alert-query: "Proxy IP"
+    bypass-permission: pav.bypass.proxy
+    cancel-message: "&cProxies aren't allowed in this server"
+    conditions:
+      yes: # <- Conditions style
+        - CANCEL # <- Actions style
+        - ALERT
+
+  mobile:
+    alert-query: "Cellular IP"
+    bypass-permission: pav.bypass.mobile
+    cancel-message: "&cMobile networks aren't allowed in this server"
+    conditions:
+      true:
+        - ALERT
+
+  hosting:
+    alert-query: "Hosting IP"
+    bypass-permission: pav.bypass.hosting
+    cancel-message: "&cHosting networks aren't allowed in this server"
+    conditions:
+      true:
+        - CANCEL
+        - ALERT
+
+  country:
+    alert-query: "Blocked Country"
+    bypass-permission: pav.bypass.country.name
+    cancel-message: "&cYour country isn't allowed in this server &e(%country%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  countryCode:
+    alert-query: "Blocked Country"
+    bypass-permission: pav.bypass.country.code
+    cancel-message: "&cYour country isn't allowed in this server &e(%countryCode%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  continent:
+    alert-query: "Blocked Continent"
+    bypass-permission: pav.bypass.continent.name
+    cancel-message: "&cYour continent isn't allowed in this server &e(%continent%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  continentCode:
+    alert-query: "Blocked Continent"
+    bypass-permission: pav.bypass.continent.code
+    cancel-message: "&cYour continent isn't allowed in this server &e(%continentCode%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  region:
+    alert-query: "Blocked Region"
+    bypass-permission: pav.bypass.region.code
+    cancel-message: "&cYour region isn't allowed in this server &e(%region%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  regionName:
+    alert-query: "Blocked Region"
+    bypass-permission: pav.bypass.region.name
+    cancel-message: "&cYour region isn't allowed in this server &e(%regionName%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  city:
+    alert-query: "Blocked City"
+    bypass-permission: pav.bypass.city
+    cancel-message: "&cYour city isn't allowed in this server &e(%city%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  district:
+    alert-query: "Blocked District"
+    bypass-permission: pav.bypass.district
+    cancel-message: "&cYour district isn't allowed in this server &e(%district%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  zip:
+    alert-query: "Blocked ZIP"
+    bypass-permission: pav.bypass.zip
+    cancel-message: "&cYour ZIP isn't allowed in this server &e(%zip%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  timezone:
+    alert-query: "Blocked Timezone"
+    bypass-permission: pav.bypass.timezone
+    cancel-message: "&cYour timezone isn't allowed in this server &e(%timezone%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  currency:
+    alert-query: "Blocked Currency"
+    bypass-permission: pav.bypass.currency
+    cancel-message: "&cYour country's currency isn't allowed in this server &e(%currency%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  isp:
+    alert-query: "Blocked ISP"
+    bypass-permission: pav.bypass.isp
+    cancel-message: "&cYour ISP isn't allowed in this server &e(%isp%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  org:
+    alert-query: "Blocked ORG"
+    bypass-permission: pav.bypass.org
+    cancel-message: "&cThe internet organization you're using isn't allowed in this server &e(%org%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  as:
+    alert-query: "Blocked IP AS"
+    bypass-permission: pav.bypass.as
+    cancel-message: "&cYour IP AS isn't allowed in this server &e(%as%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT
+
+  asname:
+    alert-query: "Blocked IP AS"
+    bypass-permission: pav.bypass.asname
+    cancel-message: "&cYour IP AS isn't allowed in this server &e(%asname%)"
+    conditions:
+      TEMPLATE:
+        - CANCEL
+        - ALERT

@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @SuppressWarnings("all")
 public class BungeeHandler {
@@ -21,6 +19,7 @@ public class BungeeHandler {
     private Configuration config;
     private Configuration webhook;
     private Configuration data;
+    private int checks = 0;
     private final PebbleAntiVPNBungeeCord main;
 
     private final HashMap<String, Integer> IPConnections = new HashMap<>();
@@ -162,4 +161,42 @@ public class BungeeHandler {
             e.printStackTrace();
         }
     }
+
+    private void startCleaner() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                clearCheckerCount();
+            }
+        }, 0, 60000);
+    }
+
+    public void addCheckerCount() {
+        this.checks++;
+    }
+
+    public void clearCheckerCount() {
+        this.checks = 0;
+    }
+
+    public HashMap<String, Boolean> getDetials(String dataIP) {
+        Object proxyDetails = this.getData("details." + dataIP + ".proxy");
+        Object whitelistDetails = this.getData("details." + dataIP + ".whitelisted");
+
+        HashMap<String, Boolean> details = new HashMap<>();
+
+        details.put("joined", proxyDetails != null);
+        if (proxyDetails == null)
+            details.put("proxy", false);
+        else
+            details.put("proxy", (boolean) proxyDetails);
+        if (whitelistDetails == null)
+            details.put("whitelist", false);
+        else
+            details.put("whitelist", (boolean) whitelistDetails);
+
+        return details;
+    }
+
 }

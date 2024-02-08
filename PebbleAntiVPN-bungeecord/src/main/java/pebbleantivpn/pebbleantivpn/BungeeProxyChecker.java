@@ -27,8 +27,10 @@ public class BungeeProxyChecker {
 
     public boolean isProxy(String IP, String name) throws IOException {
         String dataIP = IP.replace(".", "_");
-        if (this.handler.getData("details." + dataIP) != null)
+        if (this.handler.getData("details." + dataIP + ".proxy") != null) {
             return (boolean) this.handler.getData("details." + dataIP + ".proxy");
+        }
+        this.handler.addCheckerCount();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         InputStream inputStream;

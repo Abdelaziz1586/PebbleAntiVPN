@@ -3,6 +3,9 @@ version: '${project.version}'
 main: pebbleantivpn.pebbleantivpn.PebbleAntiVPNSpigot
 authors: [ Binkie ]
 description: High quality free AntiVPN.
+
+prefix: "PebbleAntiVPN"
+
 commands:
   pav:
     description: Main Command For PebbleAntiVPN
