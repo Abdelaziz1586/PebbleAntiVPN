@@ -4,6 +4,11 @@
 # Firewall System #
 api-config-file: IP-API.yml
 
+# Website Interface #
+website-interface:
+  enabled: true
+  port: 8080
+
 # Messages and Alerts #
 IP-blockage-alert:
   date-time-formatter-pattern: "yyyy/MM/dd HH:mm:ss"
@@ -75,4 +80,4 @@ command:
         fail: "&7[&6PebbleAntiVPN&6] &c%query% is not whitelisted!"
       no-given-query: "&7[&6PebbleAntiVPN&6] &c/pav whitelist (add/remove) (player name/IP)"
       no-such-ip-or-player: "&7[&6PebbleAntiVPN&6] &cThere is no such IP or player that has connected to this server."
-  incomplete-arguments: "&7[&6PebbleAntiVPN&6] &c/pav reload/whitelist"
+  invalid-argument: "&7[&6PebbleAntiVPN&6] &c/pav reload/whitelist"

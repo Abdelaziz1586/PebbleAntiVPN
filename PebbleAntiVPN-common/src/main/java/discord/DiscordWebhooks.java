@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.*;
 
 @SuppressWarnings("all")
-public class DiscordWebhooks {
+public final class DiscordWebhooks {
 
     private final String url;
     private String content;

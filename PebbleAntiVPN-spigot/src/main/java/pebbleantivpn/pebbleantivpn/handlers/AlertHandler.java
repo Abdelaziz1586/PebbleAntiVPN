@@ -8,7 +8,7 @@ import pebbleantivpn.pebbleantivpn.PebbleAntiVPNSpigot;
 
 import java.util.function.Consumer;
 
-public class AlertHandler implements handlers.AlertHandler {
+public final class AlertHandler implements handlers.AlertHandler {
 
     private final Consumer<String[]> message;
 

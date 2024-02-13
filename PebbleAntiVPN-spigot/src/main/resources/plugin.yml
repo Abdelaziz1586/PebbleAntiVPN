@@ -7,5 +7,7 @@ description: High quality free AntiVPN.
 prefix: "PebbleAntiVPN"
 
 commands:
-  pav:
+  pebbleantivpn:
+    aliases:
+      - pav
     description: Main Command For PebbleAntiVPN

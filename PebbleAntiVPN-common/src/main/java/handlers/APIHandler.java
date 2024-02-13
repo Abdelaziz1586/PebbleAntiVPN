@@ -261,6 +261,10 @@ public final class APIHandler {
         DataHandler.INSTANCE.getLogger().info("Successfully loaded API file " + file.getName() + " in " + (System.currentTimeMillis()-l) + "ms");
     }
 
+    public String getName() {
+        return name;
+    }
+
     public BlockMessage getActions(final String json, final List<String> permissions) {
         HashMap<String, Object> map;
         for (final Map.Entry<String, HashMap<String, Object>> entry : variables.entrySet()) {

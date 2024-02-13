@@ -59,6 +59,27 @@ public final class YamlFile {
         return cache;
     }
 
+    public Object getOrDefault(final @NotNull String key, final @NotNull Object defaultValue) {
+        if (data == null) return defaultValue;
+
+        Map<String, Object> cache = new HashMap<>(data);
+
+        for (final String k : key.split("\\.")) {
+            if (cache.containsKey(k)) {
+                final Object value = cache.get(k);
+                if (value instanceof Map) {
+                    cache = (Map<String, Object>) value;
+                    continue;
+                }
+
+                return value;
+            }
+
+            return defaultValue;
+        }
+        return cache;
+    }
+
     public void set(final @NotNull String key, final Object value) {
         final String[] keys = key.split("\\.");
         Map<String, Object> cache = data;

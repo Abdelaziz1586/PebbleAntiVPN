@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pebbleantivpn.pebbleantivpn.handlers.AlertHandler;
 import pebbleantivpn.pebbleantivpn.listeners.PreLogin;
 
+import java.util.Objects;
+
 public final class PebbleAntiVPNSpigot extends JavaPlugin {
 
     @Override
@@ -13,6 +15,8 @@ public final class PebbleAntiVPNSpigot extends JavaPlugin {
         new AlertHandler(this);
 
         getServer().getPluginManager().registerEvents(new PreLogin(), this);
+
+        Objects.requireNonNull(getCommand("pebbleantivpn")).setExecutor(new Command(this));
     }
 
     @Override

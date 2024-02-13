@@ -7,6 +7,8 @@
 # CANCEL -> cancels a connection
 # ALERT -> triggers plugin alert system
 
+# INFO: API must be in JSON style
+
 # Details about API
 name: IP-API
 url: "http://ip-api.com/json/%ip%?fields=continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,mobile,proxy,hosting"

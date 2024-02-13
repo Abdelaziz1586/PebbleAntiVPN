@@ -8,7 +8,7 @@ import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.message.Message;
 
-public class Log4JHandler implements Filter {
+public final class Log4JHandler implements Filter {
 
     public Log4JHandler() {
         registerFilter();
