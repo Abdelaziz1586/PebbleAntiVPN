@@ -9,6 +9,17 @@ website-interface:
   enabled: true
   port: 8080
 
+console-filter:
+  enabled: true
+  keywords:
+    - "Event ConnectionInitEvent(remoteAddress="
+    - "disconnected with: "
+    - "No client connected for pending server!"
+    - " <-> ServerConnector"
+    - "-> UpstreamBridge has disconnected"
+    - "<-> InitialHandler"
+    - "Event PostLoginEvent(player="
+
 # Messages and Alerts #
 IP-blockage-alert:
   date-time-formatter-pattern: "yyyy/MM/dd HH:mm:ss"

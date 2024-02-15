@@ -11,17 +11,6 @@ import org.apache.logging.log4j.message.Message;
 public final class Log4JHandler implements Filter {
 
     public Log4JHandler() {
-        registerFilter();
-    }
-
-    private Result checkMessage(String message) {
-//        if(this.filter.logMessage(message)) {
-//            return Result.NEUTRAL;
-//        }
-        return Result.DENY;
-    }
-
-    public void registerFilter() {
         ((Logger) LogManager.getRootLogger()).addFilter(this);
     }
 
@@ -124,5 +113,9 @@ public final class Log4JHandler implements Filter {
     @Override
     public boolean isStopped() {
         return false;
+    }
+
+    private Result checkMessage(final String message) {
+        return LogHandler.INSTANCE.blockMessage(message) ? Result.DENY : Result.NEUTRAL;
     }
 }
