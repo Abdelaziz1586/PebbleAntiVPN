@@ -1,4 +1,4 @@
-package pebbleantivpn.events;
+package pebbleantivpn.pebbleantivpnbungee.listeners;
 
 import handlers.IPHandler;
 import net.md_5.bungee.api.chat.TextComponent;

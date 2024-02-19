@@ -1,4 +1,4 @@
-package pebbleantivpn.pebbleantivpn.listeners;
+package pebbleantivpn.pebbleantivpnspigot.listeners;
 
 import handlers.IPHandler;
 import org.bukkit.entity.Player;

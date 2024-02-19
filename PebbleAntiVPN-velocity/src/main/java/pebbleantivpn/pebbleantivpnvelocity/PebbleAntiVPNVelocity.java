@@ -1,8 +1,9 @@
-package pebbleantivpn.pebbleantivpn;
+package pebbleantivpn.pebbleantivpnvelocity;
 
 import com.google.inject.Inject;
 
 import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.proxy.ProxyServer;
 import org.slf4j.Logger;
 
 @Plugin(
@@ -15,7 +16,8 @@ import org.slf4j.Logger;
 public class PebbleAntiVPNVelocity {
 
     @Inject
-    public PebbleAntiVPNVelocity(Logger logger) {
+    public PebbleAntiVPNVelocity(ProxyServer server, Logger logger) {
+
         logger.info("§bGood day there, §6PebbleAntiVPN §bdoes not yet support §6Velocity; §bhowever, the owner will ensure that it does in the upcoming release.");
     }
 }

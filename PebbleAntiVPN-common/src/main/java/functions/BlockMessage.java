@@ -4,9 +4,8 @@ import java.util.List;
 
 public final class BlockMessage {
 
-    private String message;
-    private String alertQuery;
     private List<String> actions;
+    private String message, alertQuery;
 
     public BlockMessage setMessage(final String message) {
         this.message = message;

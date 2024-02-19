@@ -1,4 +1,4 @@
-package pebbleantivpn.pebbleantivpn;
+package pebbleantivpn.pebbleantivpnspigot;
 
 import handlers.CommandHandler;
 import org.bukkit.Bukkit;

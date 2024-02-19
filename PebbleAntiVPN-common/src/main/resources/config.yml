@@ -9,8 +9,16 @@ website-interface:
   enabled: true
   port: 8080
 
+# Connection Limitation, Max Connections Per IP #
+connection-limitation:
+  enabled: false
+  limit: 3
+  bypass-permission: pav.connections.bypass
+  block-message: "&cYou have reached the maximum number of connections per IP"
+
+# Console Filter #
 console-filter:
-  enabled: true
+  enabled: false
   keywords:
     - "Event ConnectionInitEvent(remoteAddress="
     - "disconnected with: "
@@ -19,6 +27,9 @@ console-filter:
     - "-> UpstreamBridge has disconnected"
     - "<-> InitialHandler"
     - "Event PostLoginEvent(player="
+    - "Error occurred processing connection for"
+    - "UUID of player "
+    - "com.mojang.authlib.GameProfile"
 
 # Messages and Alerts #
 IP-blockage-alert:
@@ -29,10 +40,11 @@ IP-blockage-alert:
   players:
     enabled: true
     permission: pav.alerts
-    message: "&7[&6PebbleAntiVPN&6] &cBlocked IP &e%ip% &cfor the following reason &e%alert-query%"
+    message: "&7[&6PebbleAntiVPN&7] &cBlocked IP &e%ip% &cfor the following reason &e%alert-query%"
   discord-webhook:
     enabled: false
     webhook-url: "Webhook URL here"
+    username: "PebbleAnti-VPN Alert"
     text-message:
       enabled: true
       content: "**New Alert!**"
@@ -46,16 +58,13 @@ IP-blockage-alert:
         text: "A player has connected using a suspicious IP"
       color:
         random: false
-        rgb-colors:
-          R: 242
-          G: 146
-          B: 13
+        rgb-color: 242, 146, 13
       fields:
         enabled: true
         embed-fields:
           1:
             name: "Player"
-            value: "%player%"
+            value: "%name%"
             inline: true
           2:
             name: "IP"
@@ -73,22 +82,22 @@ IP-blockage-alert:
           url: "https://i.imgur.com/obCxZdl.png"
       thumbnail:
         enabled: true
-        thumbnail-url: "https://mc-heads.net/avatar/%player%/"
+        thumbnail-url: "https://mc-heads.net/avatar/%name%/"
 
 # Command #
 command:
   reload:
     permission: pav.command.reload
-    message: "&7[&6PebbleAntiVPN&6] &aReloaded all config, data, and APIs!\n&7Info: Check the console to make sure there aren't any errors."
+    message: "&7[&6PebbleAntiVPN&7] &aReloaded all config, data, and APIs! &7Info: Check the console to make sure there aren't any errors."
   whitelist:
     permission: pav.command.whitelist
     messages:
       add:
-        success: "&7[&6PebbleAntiVPN&6] &aSuccessfully add &e%query% &ato the whitelist"
-        fail: "&7[&6PebbleAntiVPN&6] &c%query% is already whitelisted!"
+        success: "&7[&6PebbleAntiVPN&7] &aSuccessfully added &e%query% &ato the whitelist"
+        fail: "&7[&6PebbleAntiVPN&7] &c%query% is already whitelisted!"
       remove:
-        success: "&7[&6PebbleAntiVPN&6] &aSuccessfully removed &e%query% &afrom the whitelist"
-        fail: "&7[&6PebbleAntiVPN&6] &c%query% is not whitelisted!"
-      no-given-query: "&7[&6PebbleAntiVPN&6] &c/pav whitelist (add/remove) (player name/IP)"
-      no-such-ip-or-player: "&7[&6PebbleAntiVPN&6] &cThere is no such IP or player that has connected to this server."
-  invalid-argument: "&7[&6PebbleAntiVPN&6] &c/pav reload/whitelist"
+        success: "&7[&6PebbleAntiVPN&7] &aSuccessfully removed &e%query% &afrom the whitelist"
+        fail: "&7[&6PebbleAntiVPN&7] &c%query% is not whitelisted!"
+      no-given-query: "&7[&6PebbleAntiVPN&7] &c/pav whitelist (add/remove) (player name/IP)"
+      no-such-ip-or-player: "&7[&6PebbleAntiVPN&7] &cThere is no such IP or player saved in the data file."
+  invalid-argument: "&7[&6PebbleAntiVPN&7] &c/pav reload/whitelist"

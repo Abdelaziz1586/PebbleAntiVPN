@@ -1,5 +1,5 @@
 name: PebbleAntiVPN
 version: '${project.version}'
-main: pebbleantivpn.pebbleantivpn.PebbleAntiVPNBungeeCord
+main: pebbleantivpn.pebbleantivpnbungee.PebbleAntiVPNBungeeCord
 author: Binkie
 description: High quality free AntiVPN.

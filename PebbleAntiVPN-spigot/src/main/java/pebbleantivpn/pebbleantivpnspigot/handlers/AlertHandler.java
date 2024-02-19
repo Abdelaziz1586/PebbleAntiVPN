@@ -1,10 +1,10 @@
-package pebbleantivpn.pebbleantivpn.handlers;
+package pebbleantivpn.pebbleantivpnspigot.handlers;
 
 import handlers.DataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pebbleantivpn.pebbleantivpn.PebbleAntiVPNSpigot;
+import pebbleantivpn.pebbleantivpnspigot.PebbleAntiVPNSpigot;
 
 import java.util.function.Consumer;
 
@@ -17,7 +17,7 @@ public final class AlertHandler implements handlers.AlertHandler {
 
         message = s -> Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
             for (final Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission(s[0])) player.sendMessage(s[1]);
+                if (player.hasPermission(s[1])) player.sendMessage(s[0]);
             }
         });
     }

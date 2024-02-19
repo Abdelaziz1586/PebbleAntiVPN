@@ -30,6 +30,8 @@ public final class DataHandler {
         new IPHandler();
         new APIHandler();
         new TimeHandler();
+        new WebhookHandler();
+        new CommandHandler();
     }
 
     public void update() {
@@ -52,7 +54,9 @@ public final class DataHandler {
         try {
             IPHandler.INSTANCE.update();
             APIHandler.INSTANCE.update();
+            LogHandler.INSTANCE.update();
             TimeHandler.INSTANCE.update();
+            WebhookHandler.INSTANCE.update();
         } catch (final NullPointerException ignored) {}
     }
 
@@ -61,8 +65,9 @@ public final class DataHandler {
     }
 
     public void alert(final @NotNull String message, final @NotNull String permission) {
-        if (alertHandler != null)
-            alertHandler.alert(message, permission);
+        if (alertHandler != null) alertHandler.alert(message, permission);
+
+
     }
 
     public Logger getLogger() {
@@ -78,6 +83,8 @@ public final class DataHandler {
     }
 
     public String translateAlternateColorCodes(final String textToTranslate) {
+        if (textToTranslate == null) return null;
+
         final char[] b = textToTranslate.toCharArray();
         for (int i = 0; i < b.length - 1; i++) {
             if (b[i] == '&' && ALL_CODES.indexOf(b[i + 1]) > -1) {

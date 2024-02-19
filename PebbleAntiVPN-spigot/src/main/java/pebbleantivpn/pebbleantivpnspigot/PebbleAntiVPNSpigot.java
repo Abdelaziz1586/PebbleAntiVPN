@@ -1,10 +1,11 @@
-package pebbleantivpn.pebbleantivpn;
+package pebbleantivpn.pebbleantivpnspigot;
 
 import handlers.DataHandler;
 import handlers.LogHandler;
 import org.bukkit.plugin.java.JavaPlugin;
-import pebbleantivpn.pebbleantivpn.handlers.AlertHandler;
-import pebbleantivpn.pebbleantivpn.listeners.PreLogin;
+import pebbleantivpn.pebbleantivpnspigot.handlers.AlertHandler;
+import pebbleantivpn.pebbleantivpnspigot.listeners.PlayerQuit;
+import pebbleantivpn.pebbleantivpnspigot.listeners.PreLogin;
 
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public final class PebbleAntiVPNSpigot extends JavaPlugin {
         new LogHandler(null);
 
         getServer().getPluginManager().registerEvents(new PreLogin(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
 
         Objects.requireNonNull(getCommand("pebbleantivpn")).setExecutor(new Command(this));
     }

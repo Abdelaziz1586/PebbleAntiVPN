@@ -51,5 +51,6 @@
         <module>pebbleantivpn-spigot</module>
         <module>pebbleantivpn-bungeecord</module>
         <module>pebbleantivpn-velocity</module>
+        <module>PebbleAntiVPN-sponge</module>
     </modules>
 </project>

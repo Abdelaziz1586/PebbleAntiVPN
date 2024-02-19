@@ -31,15 +31,15 @@ public final class YamlFile {
     public void update() {
         try {
             data = yaml.load(new String(Files.readAllBytes(filePath)));
+
+            if (data == null) data = new HashMap<>();
         } catch (final IOException e) {
             DataHandler.INSTANCE.getLogger().severe("Couldn't load yaml from file " + filePath.toFile().getName() + ": " + e.getMessage());
-            data = null;
+            data = new HashMap<>();
         }
     }
 
     public Object get(final @NotNull String key) {
-        if (data == null) return null;
-
         Map<String, Object> cache = new HashMap<>(data);
 
         for (final String k : key.split("\\.")) {
@@ -60,8 +60,6 @@ public final class YamlFile {
     }
 
     public Object getOrDefault(final @NotNull String key, final @NotNull Object defaultValue) {
-        if (data == null) return defaultValue;
-
         Map<String, Object> cache = new HashMap<>(data);
 
         for (final String k : key.split("\\.")) {
@@ -84,7 +82,8 @@ public final class YamlFile {
         final String[] keys = key.split("\\.");
         Map<String, Object> cache = data;
 
-        for (final String k : keys) {
+        for (int i = 0; i < keys.length - 1; i++) {
+            final String k = keys[i];
             if (!cache.containsKey(k) || !(cache.get(k) instanceof Map)) {
                 cache.put(k, new LinkedHashMap<>());
             }

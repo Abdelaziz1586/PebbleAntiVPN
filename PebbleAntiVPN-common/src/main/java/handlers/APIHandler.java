@@ -287,8 +287,8 @@ public final class APIHandler {
 
     public String sendAndGet(final @NotNull String IP, final @NotNull String name, final @NotNull String time) {
         try {
-            final BufferedReader in = getBufferedReader(IP, name, time);
             final StringBuilder response = new StringBuilder();
+            final BufferedReader in = getBufferedReader(IP, name, time);
 
             String currentLine;
 
@@ -301,9 +301,8 @@ public final class APIHandler {
             return response.toString();
         } catch (final Exception e) {
             DataHandler.INSTANCE.getLogger().severe("Couldn't send request to '" + url + "'");
+            return null;
         }
-
-        return null;
     }
 
     public String getLimitationMessage() {

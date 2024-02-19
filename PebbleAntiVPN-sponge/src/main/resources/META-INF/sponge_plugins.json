@@ -1,0 +1,34 @@
+{
+  "loader": {
+    "name": "java_plain",
+    "version": "1.0"
+  },
+  "license": "All-Rights-Reserved",
+  "plugins": [
+    {
+      "id": "pebbleantivpnsponge",
+      "name": "PebbleAntiVPNSponge",
+      "version": "2.0",
+      "entrypoint": "org.pebbleprojects.pebbleantivpnsponge.PebbleAntiVPNSponge",
+      "description": "",
+      "branding": {},
+      "links": {
+      },
+      "contributors": [
+        {
+          "name": "PebbleProjects",
+          "description": "Author"
+        }
+      ],
+
+      "dependencies": [
+        {
+          "id": "spongeapi",
+          "version": "9.1.0-SNAPSHOT",
+          "load-order": "after",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}

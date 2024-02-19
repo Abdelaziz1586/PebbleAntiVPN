@@ -1,6 +1,6 @@
 name: PebbleAntiVPN
-version: '${project.version}'
-main: pebbleantivpn.pebbleantivpn.PebbleAntiVPNSpigot
+version: 2.0
+main: pebbleantivpn.pebbleantivpnspigot.PebbleAntiVPNSpigot
 authors: [ Binkie ]
 description: High quality free AntiVPN.
 

@@ -10,13 +10,11 @@ import java.util.List;
 import java.util.*;
 
 @SuppressWarnings("all")
-public final class DiscordWebhooks {
+public final class DiscordWebhook {
 
-    private final String url;
-    private String content;
-    private String username;
-    private String avatarUrl;
     private boolean tts;
+    private final String url;
+    private String content, username, avatarUrl;
     private final List<EmbedObject> embeds = new ArrayList<>();
 
     /**
@@ -24,12 +22,16 @@ public final class DiscordWebhooks {
      *
      * @param url The webhook URL obtained in Discord
      */
-    public DiscordWebhooks(String url) {
+    public DiscordWebhook(String url) {
         this.url = url;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     public void setUsername(String username) {
@@ -46,6 +48,10 @@ public final class DiscordWebhooks {
 
     public void addEmbed(EmbedObject embed) {
         this.embeds.add(embed);
+    }
+
+    public void clearEmbeds() {
+        embeds.clear();
     }
 
     public void execute() throws IOException {
@@ -198,7 +204,7 @@ public final class DiscordWebhooks {
             return fields;
         }
 
-        public EmbedObject setTitle(String title) {
+            public EmbedObject setTitle(String title) {
             this.title = title;
             return this;
         }
@@ -243,7 +249,7 @@ public final class DiscordWebhooks {
             return this;
         }
 
-        private static class Footer {
+        public class Footer {
             private final String text;
             private final String iconUrl;
 
@@ -252,23 +258,27 @@ public final class DiscordWebhooks {
                 this.iconUrl = iconUrl;
             }
 
-            private String getText() {
+            public String getText() {
                 return text;
             }
 
-            private String getIconUrl() {
+            public String getIconUrl() {
                 return iconUrl;
             }
         }
 
-        private static class Thumbnail {
-            private final String url;
+        public class Thumbnail {
+            private String url;
 
             private Thumbnail(String url) {
                 this.url = url;
             }
 
-            private String getUrl() {
+            public void setUrl(final String url) {
+                this.url = url;
+            }
+
+            public String getUrl() {
                 return url;
             }
         }
@@ -309,10 +319,10 @@ public final class DiscordWebhooks {
             }
         }
 
-        private static class Field {
-            private final String name;
-            private final String value;
-            private final boolean inline;
+        public class Field {
+            private String name;
+            private String value;
+            private boolean inline;
 
             private Field(String name, String value, boolean inline) {
                 this.name = name;
@@ -320,15 +330,24 @@ public final class DiscordWebhooks {
                 this.inline = inline;
             }
 
-            private String getName() {
+
+            public String getName() {
                 return name;
             }
 
-            private String getValue() {
+            public void setName(final String name) {
+                this.name = name;
+            }
+
+            public String getValue() {
                 return value;
             }
 
-            private boolean isInline() {
+            public void setValue(final String value) {
+                this.value = value;
+            }
+
+            public boolean isInline() {
                 return inline;
             }
         }

@@ -1,4 +1,4 @@
-package pebbleantivpn.events;
+package pebbleantivpn.pebbleantivpnbungee.listeners;
 
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.plugin.Listener;

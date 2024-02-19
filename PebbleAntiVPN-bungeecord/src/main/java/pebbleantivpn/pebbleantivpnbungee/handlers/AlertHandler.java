@@ -1,10 +1,10 @@
-package pebbleantivpn.handlers;
+package pebbleantivpn.pebbleantivpnbungee.handlers;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.jetbrains.annotations.NotNull;
-import pebbleantivpn.pebbleantivpn.PebbleAntiVPNBungeeCord;
+import pebbleantivpn.pebbleantivpnbungee.PebbleAntiVPNBungeeCord;
 
 
 import java.util.function.Consumer;

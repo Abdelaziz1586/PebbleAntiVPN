@@ -1,16 +1,14 @@
 package functions;
 
-import handlers.APIHandler;
-import handlers.DataHandler;
-import handlers.TimeHandler;
+import handlers.*;
 
 import java.util.List;
 
 public final class IPData {
 
-    private String blockMessage;
-    private final String IP, name;
-    private final List<String> permissions;
+    private final String IP;
+    private List<String> permissions;
+    private String blockMessage, name;
 
     public IPData(final String IP, final String name, final List<String> permissions) {
         this.IP = IP;
@@ -27,6 +25,8 @@ public final class IPData {
             if (blockMessage == null) {
                 final String time = TimeHandler.INSTANCE.getFormattedTime(),
                         json = APIHandler.INSTANCE.sendAndGet(IP, name, time);
+
+                if (json == null) return;
 
                 DataHandler.INSTANCE.getData().set("IPs." + APIHandler.INSTANCE.getName() + "." + IP.replace(".", "_") + ".player", name.toLowerCase());
                 DataHandler.INSTANCE.getData().set("IPs." + APIHandler.INSTANCE.getName() + "." + IP.replace(".", "_") + ".whitelisted", false);
@@ -48,7 +48,16 @@ public final class IPData {
     }
 
     public String getBlockMessage() {
-        return blockMessage;
+        return IPHandler.INSTANCE.isWhitelisted(IP) ? null : blockMessage;
+    }
+
+    public void editForNewRequest(final String name, final List<String> permissions) {
+        this.name = name;
+        if (permissions.equals(this.permissions)) return;
+
+        this.permissions = permissions;
+
+        prepare();
     }
 
     private void getBlockMessageReady(final String json, final String time, boolean alert) {
@@ -89,8 +98,6 @@ public final class IPData {
                             DataHandler.INSTANCE.getLogger().info(DataHandler.INSTANCE.translateAlternateColorCodes(o.toString()).replace("%ip%", IP).replace("%alert-query%", message.getAlertQuery()).replace("%name%", name).replace("%time%", time));
                         }
 
-
-
                         o = DataHandler.INSTANCE.getConfig().get("IP-blockage-alert.players.enabled");
                         if (!(o instanceof Boolean)) {
                             DataHandler.INSTANCE.getLogger().severe("Couldn't find the value of 'IP-blockage-alert.players.enabled' in the config");
@@ -113,6 +120,7 @@ public final class IPData {
                             }
 
                             DataHandler.INSTANCE.alert(alertMessage, o.toString());
+                            WebhookHandler.INSTANCE.alert(IP, name, alertMessage, time);
                         }
                     }
                     break;
